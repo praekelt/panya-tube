@@ -21,19 +21,12 @@ class AgeRestriction(models.Model):
         null=True,
     )
 
-class ChannelBase(ModelBase):
+class Channel(ModelBase):
     """
-    Base channel model. All Channel types should inherit from here, enabling semi generic relationships.
+    Base channel model from which all Channel types should inherit.
     """
     age_restriction = models.ForeignKey(
-        'tube.AgeRestriction'
+        'tube.AgeRestriction',
         blank=True,
         null=True,
     )
-
-class Channel(ChannelBase):
-    """
-    Simple channel model extending ChannelBase. Proxy model used to enable admin management.
-    """
-    class Meta():
-        proxy = True
