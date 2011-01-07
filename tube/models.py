@@ -125,3 +125,10 @@ class Season(models.Model):
         blank=True,
         null=True,
     )
+
+class Series(ModelBase):
+    """
+    Model storing metadata associated with series.
+    I.e. Law & Order.
+    """
+    pass
