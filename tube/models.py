@@ -57,7 +57,7 @@ class ClipBase(ModelBase):
     def get_series_id(self):
         return self.series.id if self.series else ''
     
-class Clip(VideoBase):
+class Clip(ClipBase):
     """
     Clip model with local media resource.
     """
