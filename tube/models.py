@@ -2,6 +2,35 @@ from django.db import models
 
 from panya.models import ModelBase
 
+class AgeRestriction(models.Model):
+    """
+    Simple age restriction model.
+    """
+    age = models.IntegerField(
+        help_text="Rating age, i.e. 13, 18 etc.",
+    )
+    symbol = models.CharField(
+        max_length=128,
+        help_text='Rating symbol, i.e. PG, SN, R, G etc.',
+        blank=True,
+        null=True,
+    )
+    description = models.TextField(
+        help_text='A short description. Usually an explanation of the symbol, i.e. Parental Guidance Suggested. Some material may not be suitable for children.',
+        blank=True,
+        null=True,
+    )
+
+class Channel(ModelBase):
+    """
+    Basic channel model.
+    """
+    age_restriction = models.ForeignKey(
+        'tube.AgeRestriction',
+        blank=True,
+        null=True,
+    )
+
 class ClipBase(ModelBase):
     """
     Model defining clip metadata. Clip types should inherit from this model.
@@ -67,18 +96,6 @@ class Clip(ClipBase):
         blank=True,
         null=True,
     )
-    
-class Season(models.Model):
-    """
-    Model storing metadata associated with season.
-    I.e. Simpsons Season 2.
-    """
-    clips = models.ManyToManyField(
-        'tube.ClipBase',
-        through='tube.Episode',
-        blank=True,
-        null=True,
-    )
 
 class Episode(models.Model):
     """
@@ -96,32 +113,15 @@ class Episode(models.Model):
         blank=True,
         null=True,
     )
-
-class AgeRestriction(models.Model):
+    
+class Season(models.Model):
     """
-    Simple age restriction model.
+    Model storing metadata associated with season.
+    I.e. Simpsons Season 2.
     """
-    age = models.IntegerField(
-        help_text="Rating age, i.e. 13, 18 etc.",
-    )
-    symbol = models.CharField(
-        max_length=128,
-        help_text='Rating symbol, i.e. PG, SN, R, G etc.',
-        blank=True,
-        null=True,
-    )
-    description = models.TextField(
-        help_text='A short description. Usually an explanation of the symbol, i.e. Parental Guidance Suggested. Some material may not be suitable for children.',
-        blank=True,
-        null=True,
-    )
-
-class Channel(ModelBase):
-    """
-    Basic channel model.
-    """
-    age_restriction = models.ForeignKey(
-        'tube.AgeRestriction',
+    clips = models.ManyToManyField(
+        'tube.ClipBase',
+        through='tube.Episode',
         blank=True,
         null=True,
     )
