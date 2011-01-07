@@ -11,8 +11,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from panya.admin import ModelBaseAdmin
-from tube.models import AgeRestriction, Channel, Clip
+from tube.models import AgeRestriction, Channel, Clip, Series
 from tube.widgets import RadioFieldImageRenderer
+
+import pyffmpeg
 
 class ChannelAdmin(ModelBaseAdmin):
     def queryset(self, request):
@@ -167,3 +169,4 @@ class ClipAdmin(ModelBaseAdmin):
 admin.site.register(AgeRestriction)
 admin.site.register(Channel, ChannelAdmin)
 admin.site.register(Clip, ClipAdmin)
+admin.site.register(Series, ModelBaseAdmin)

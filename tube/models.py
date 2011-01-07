@@ -85,10 +85,10 @@ class ClipBase(ModelBase):
         
     def get_series_id(self):
         return self.series.id if self.series else ''
-    
-class Clip(ClipBase):
+   
+class MediaResourceAbstractClip(models.Model):
     """
-    Clip model with local media resource.
+    Abstract clip model with local media resource.
     """
     media_resource = models.FileField(
         help_text="Upload the media file for this clip.",
@@ -96,6 +96,15 @@ class Clip(ClipBase):
         blank=True,
         null=True,
     )
+
+    class Meta():
+        abstract = True
+
+class Clip(ClipBase, MediaResourceAbstractClip):
+    """
+    Concrete Clip model with local media resource.
+    """
+    pass
 
 class Episode(models.Model):
     """
