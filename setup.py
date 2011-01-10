@@ -15,7 +15,6 @@ setup(
     ],
     install_requires = [
         'panya',
-        'numpy',
         'pyffmpeg',
     ],
     include_package_data=True,
