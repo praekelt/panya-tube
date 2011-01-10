@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.0.3
+-----
+
+#. Added numpy dep.
+
 0.0.2
 -----
 
