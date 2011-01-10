@@ -11,7 +11,7 @@ setup(
     url='http://github.com/praekelt/panya-tube',
     packages = find_packages(),
     dependency_links = [
-        'http://github.com/downloads/praekelt/public-eggs/pyffmpeg-2.0-py2.6-linux-i686.egg#egg=pyffmpeg',
+        'http://praekelt.github.com/public-eggs/',
     ],
     install_requires = [
         'panya',
