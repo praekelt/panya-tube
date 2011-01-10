@@ -85,6 +85,10 @@ class ClipBase(ModelBase):
         
     def get_series_id(self):
         return self.series.id if self.series else ''
+
+    @property
+    def duration_as_hours_minute_seconds(self):
+        return {'hours': self.duration/60/60, 'minutes': (self.duration % 3600) / 60, 'seconds': self.duration % 60}
    
 class MediaResourceAbstractClip(models.Model):
     """
