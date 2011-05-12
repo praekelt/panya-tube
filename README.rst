@@ -12,6 +12,5 @@ System Package Dependencies
 #. libavformat-dev
 #. libavutil-dev
 #. python-dev
-#. python-numpy
 #. python-Pyrex
 
